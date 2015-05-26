@@ -25,38 +25,25 @@
 <?rfc toc="no"?>
 <?rfc symrefs="yes"?>
 
-<rfc category="std" ipr="trust200902" docName="draft-mavrogiannopoulos-tls-cross-protocol-03" submissionType="IETF">
+<rfc category="std" ipr="trust200902" docName="draft-mavrogiannopoulos-tls-cross-protocol-04" submissionType="IETF">
    <front>
       <title abbrev="Preventing TLS cross-protocol attacks">Preventing cross-protocol attacks on the TLS protocol</title>
       <author initials="N." surname="Mavrogiannopoulos" fullname="Nikos
       Mavrogiannopoulos">
-         <organization abbrev="KU Leuven - IBBT">KU Leuven ESAT/SCD/COSIC</organization>
+         <organization abbrev="Red Hat">Red Hat</organization>
          <address>
             <postal>
-               <street>Kasteelpark Arenberg 10, bus 2446</street>
-               <city>Leuven-Heverlee</city>
+               <street>Purkynova 99/71</street>
+               <city>Brno</city>
                <region></region>
-               <code>B-3001</code>
-               <country>Belgium</country>
+               <code>612 45</code>
+               <country>Czech Republic</country>
             </postal>
-            <email>nikos.mavrogiannopoulos@esat.kuleuven.be</email>
-         </address>
-      </author>
-      <author initials="B." surname="Preneel" fullname="Bart Preneel">
-         <organization abbrev="KU Leuven - IBBT">KU Leuven ESAT/SCD/COSIC</organization>
-         <address>
-            <postal>
-               <street>Kasteelpark Arenberg 10, bus 2446</street>
-               <city>Leuven-Heverlee</city>
-               <region></region>
-               <code>B-3001</code>
-               <country>Belgium</country>
-            </postal>
-            <email>bart.preneel@esat.kuleuven.be</email>
+            <email>nmav@redhat.com</email>
          </address>
       </author>
 
-      <date month="November" year="2012"/>
+      <date month="May" year="2015"/>
       <area>Security</area>
 
 <!-- [rfced] Please note that after you have approved the document,
@@ -123,7 +110,8 @@ to prevent any attack that takes advantage of the different signature format.
 For that we propose that the signature of the ServerKeyExchange message to be modified
 to include in addition to explicit identifiers of the algorithms, all the previously exchanged messages.
 The proposed signature for a ServerKeyExchange message is shown below.
-
+</t>
+<t>
      <figure>
       <artwork><![CDATA[
   enum { server (0), client (1) } ConnectionEnd;
@@ -146,19 +134,21 @@ The proposed signature for a ServerKeyExchange message is shown below.
   struct {
     Parameters params;
     digitally-signed struct {
-      ConnectionEnd entity;
-      Parameters params;
+      "New Server Key Exchange\0";
       opaque handshake_messages<0..2^24-1>;
+      Parameters params;
     }
   } ServerKeyExchange;
 ]]></artwork>
 </figure>
-
+</t>
 <!--       opaque handshake_messages[handshake_messages_length]; -->
-
+<t>
 
 The new format includes explicit indicators of the entity (server), the key exchange algorithm used, 
 the parameters of the key exchange, and the previously exchanged handshake messages.
+To differentiate from any other similar messages, the signed data are prefixed with the
+null terminated string "New Server Key Exchange".
 This modification will be negotiated by using a new TLS extension to allow backwards compatibility.
 </t>
 
