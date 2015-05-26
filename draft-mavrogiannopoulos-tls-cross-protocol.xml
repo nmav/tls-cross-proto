@@ -68,9 +68,9 @@ In effect the attack uses a server as an oracle to obtain signed ServerKeyExchan
 are relayed to another, unrelated, session. The described attack turned to be impossible to implement in 
 practice, but the underlying idea is applicable to all TLS protocol
 versions, and it provides a tool for new attacks on the protocol.
-The  <xref target="CROSS-PROTOCOL"/> attack is a prominent
-example, which takes advantage of interactions between the Diffie-Hellman and Elliptic Curve Diffie-Hellman
-ciphersuites to perform a TLS server impersonation after obtaining 2^40 signed messages.
+The  <xref target="CROSS-PROTOCOL"/><xref target="WEAKDH"/> attacks are prominent
+examples, which take advantage of interactions between different ciphersuites to perform 
+a TLS server impersonation.
         </t>
 
         <t>
@@ -271,6 +271,57 @@ to indicate support for the extended format even in the presence of an adversary
             <date month='October' year='2012' />
         </front>
         <seriesInfo name="In Proceedings of the 19th ACM Conference on Computer and Communications Security (CCS 2012), ACM" value=""/>
+    </reference>
+
+    <reference anchor='WEAKDH'>
+        <front>
+            <title>Imperfect Forward Secrecy: How Diffie-Hellman Fails in Practice</title>
+            <author initials='D.' surname='Adrian'
+                    fullname='David Adrian'>
+            </author>
+            <author initials='K.' surname='Bhargavan'
+                    fullname='Karthikeyan Bhargavan'>
+            </author>
+            <author initials='Z.' surname='Durumeric'
+                    fullname='Zakir Durumeric'>
+            </author>
+            <author initials='P.' surname='Gaudry'
+                    fullname='Pierrick Gaudry'>
+            </author>
+            <author initials='M.' surname='Green'
+                    fullname='Matthew Green'>
+            </author>
+            <author initials='J-A.' surname='Halderman'
+                    fullname='J. Alex Halderman'>
+            </author>
+            <author initials='N.' surname='Heninger'
+                    fullname='Nadia Heninger'>
+            </author>
+            <author initials='D.' surname='Springall'
+                    fullname='Drew Springall'>
+            </author>
+            <author initials='E.' surname='Thome'
+                    fullname='Emmanuel Thome'>
+            </author>
+            <author initials='L.' surname='Valenta'
+                    fullname='Luke Valenta'>
+            </author>
+            <author initials='B.' surname='VanderSloot'
+                    fullname='Benjamin VanderSloot'>
+            </author>
+            <author initials='E.' surname='Wustrow'
+                    fullname='Eric Wustrow'>
+            </author>
+            <author initials='S.' surname='Zanella-Beguelin'
+                    fullname='Santiago Zanella-Beguelin'>
+            </author>
+            <author initials='P.' surname='Zimmermann'
+                    fullname='Paul Zimmermann'>
+            </author>
+
+            <date month='May' year='2015' />
+        </front>
+        <seriesInfo name="Technical Report" value=""/>
     </reference>
 
    &RFC6101;
