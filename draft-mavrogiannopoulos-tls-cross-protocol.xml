@@ -114,8 +114,6 @@ The proposed signature for a ServerKeyExchange message is shown below.
 <t>
      <figure>
       <artwork><![CDATA[
-  enum { server (0), client (1) } ConnectionEnd;
-
   enum { dhe_dss (0), dhe_rsa (1), 
          ec_diffie_hellman (2) 
        } KeyExchangeAlgorithm;
